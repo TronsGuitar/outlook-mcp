@@ -1,0 +1,22 @@
+# Local virtualenv — deps are resolved at runtime via `uv run`, not bundled
+.venv/
+venv/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Caches / VCS / secrets
+__pycache__/
+*.py[cod]
+.git/
+.gitignore
+.outlook-mcp/
+token.json
+*.token
+.env
+
+# Don't nest bundles
+*.mcpb
+*.dxt
