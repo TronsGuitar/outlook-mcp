@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# uv
+.uv/
+
+# Secrets / local state — never commit cached OAuth tokens
+.outlook-mcp/
+token.json
+*.token
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# MCP bundle build output
+*.mcpb
+*.dxt

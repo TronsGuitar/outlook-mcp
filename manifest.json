@@ -1,0 +1,50 @@
+{
+  "manifest_version": "0.2",
+  "name": "outlook-mcp",
+  "display_name": "Outlook (Personal) Mail",
+  "version": "0.1.0",
+  "description": "Read-only access to a personal Outlook.com mailbox via Microsoft Graph.",
+  "long_description": "Search and read a personal Outlook.com / hotmail.com / live.com mailbox. Authenticates through Microsoft's consumer OAuth endpoint so personal Microsoft accounts can sign in. Read-only (Mail.Read); tokens are cached locally and never leave your machine.",
+  "author": {
+    "name": "Brian Bass"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TronsGuitar/outlook-mcp"
+  },
+  "server": {
+    "type": "python",
+    "entry_point": "src/outlook_mcp/server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": ["--directory", "${__dirname}", "run", "outlook-mcp"],
+      "env": {
+        "OUTLOOK_MCP_CLIENT_ID": "${user_config.client_id}",
+        "OUTLOOK_MCP_REDIRECT_PORT": "${user_config.redirect_port}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "search_mail", "description": "Full-text search across the mailbox." },
+    { "name": "list_recent_mail", "description": "List the newest inbox messages." },
+    { "name": "get_message", "description": "Fetch the full content of one message by id." }
+  ],
+  "user_config": {
+    "client_id": {
+      "type": "string",
+      "title": "Azure Application (client) ID",
+      "description": "The Application (client) ID from your Microsoft Entra app registration (see README for setup).",
+      "required": true,
+      "sensitive": true
+    },
+    "redirect_port": {
+      "type": "string",
+      "title": "OAuth redirect port",
+      "description": "Loopback port for the sign-in redirect. Must match the redirect URI registered in Azure.",
+      "required": false,
+      "default": "8765"
+    }
+  },
+  "keywords": ["outlook", "email", "microsoft-graph", "mail"]
+}
