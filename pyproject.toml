@@ -1,5 +1,5 @@
 [project]
-name = "outlook-mcp"
+name = "outlook-personal-mcp"
 version = "0.1.0"
 description = "MCP server giving an LLM read-only access to a personal Outlook.com mailbox via Microsoft Graph."
 readme = "README.md"
