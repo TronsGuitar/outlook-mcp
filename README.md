@@ -4,6 +4,8 @@ A small, self-hosted **MCP server** that gives an LLM (Claude Code, Claude Deskt
 MCP client) **read-only** access to a **personal Outlook.com** mailbox (outlook.com /
 hotmail.com / live.com) through the Microsoft Graph API.
 
+The python mcp server can be installed at https://pypi.org/project/outlook-personal-mcp/
+
 It authenticates against Microsoft's **consumer** OAuth endpoint (`/consumers`), which is
 what lets *personal* Microsoft accounts sign in. Most "Microsoft 365" connectors are
 registered as work/school-only apps and will reject a personal account — this one is built
