@@ -34,7 +34,7 @@ TOKEN_URL = f"{AUTHORITY}/token"
 # Delegated Microsoft Graph scopes. offline_access is required to get a refresh token.
 SCOPES = "openid profile offline_access https://graph.microsoft.com/Mail.Read"
 
-TOKEN_PATH = Path(os.path.expanduser("~")) / ".outlook-mcp" / "token.json"
+TOKEN_PATH = Path(os.path.expanduser("~")) / ".outlook-personal-mcp" / "token.json"
 
 
 def get_client_id() -> str:
@@ -74,7 +74,7 @@ def _load_tokens() -> dict:
     if not TOKEN_PATH.exists():
         raise RuntimeError(
             f"No cached credentials at {TOKEN_PATH}. Run the one-time sign-in first:\n"
-            f"  uv run outlook-mcp-auth"
+            f"  uv run outlook-personal-mcp-auth"
         )
     return json.loads(TOKEN_PATH.read_text())
 
@@ -189,7 +189,7 @@ def cli_login() -> None:
 def _refresh(tokens: dict) -> dict:
     refresh_token = tokens.get("refresh_token")
     if not refresh_token:
-        raise RuntimeError("No refresh token cached. Run `uv run outlook-mcp-auth` again.")
+        raise RuntimeError("No refresh token cached. Run `uv run outlook-personal-mcp-auth` again.")
     resp = httpx.post(
         TOKEN_URL,
         data={
@@ -203,7 +203,7 @@ def _refresh(tokens: dict) -> dict:
     if resp.status_code != 200:
         raise RuntimeError(
             f"Token refresh failed ({resp.status_code}): {resp.text}. "
-            "You may need to run `uv run outlook-mcp-auth` again."
+            "You may need to run `uv run outlook-personal-mcp-auth` again."
         )
     new = resp.json()
     # Microsoft may not return a new refresh token; keep the old one if so.
