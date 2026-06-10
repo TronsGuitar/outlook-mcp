@@ -12,7 +12,7 @@ venv/
 .uv/
 
 # Secrets / local state — never commit cached OAuth tokens
-.outlook-mcp/
+.outlook-personal-mcp/
 token.json
 *.token
 .env
