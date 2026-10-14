@@ -21,13 +21,13 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/TronsGuitar/outlook-mcp"
-Repository = "https://github.com/TronsGuitar/outlook-mcp"
-Issues = "https://github.com/TronsGuitar/outlook-mcp/issues"
+Homepage = "https://github.com/TronsGuitar/outlook-personal-mcp"
+Repository = "https://github.com/TronsGuitar/outlook-personal-mcp"
+Issues = "https://github.com/TronsGuitar/outlook-personal-mcp/issues"
 
 [project.scripts]
-outlook-mcp = "outlook_mcp.server:main"
-outlook-mcp-auth = "outlook_mcp.auth:cli_login"
+outlook-personal-mcp = "outlook_mcp.server:main"
+outlook-personal-mcp-auth = "outlook_mcp.auth:cli_login"
 
 [build-system]
 requires = ["hatchling"]

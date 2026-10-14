@@ -1,6 +1,6 @@
 {
   "manifest_version": "0.2",
-  "name": "outlook-mcp",
+  "name": "outlook-personal-mcp",
   "display_name": "Outlook (Personal) Mail",
   "version": "0.1.0",
   "description": "Read-only access to a personal Outlook.com mailbox via Microsoft Graph.",
@@ -11,14 +11,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TronsGuitar/outlook-mcp"
+    "url": "https://github.com/TronsGuitar/outlook-personal-mcp"
   },
   "server": {
     "type": "python",
     "entry_point": "src/outlook_mcp/server.py",
     "mcp_config": {
       "command": "uv",
-      "args": ["--directory", "${__dirname}", "run", "outlook-mcp"],
+      "args": ["--directory", "${__dirname}", "run", "outlook-personal-mcp"],
       "env": {
         "OUTLOOK_MCP_CLIENT_ID": "${user_config.client_id}",
         "OUTLOOK_MCP_REDIRECT_PORT": "${user_config.redirect_port}"

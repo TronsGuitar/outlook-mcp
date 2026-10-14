@@ -11,7 +11,7 @@ from .auth import get_access_token
 
 GRAPH_BASE = "https://graph.microsoft.com/v1.0"
 
-mcp = FastMCP("outlook-mcp")
+mcp = FastMCP("outlook-personal-mcp")
 
 
 def _graph_get(path: str, params: dict[str, Any] | None = None) -> dict:
@@ -24,7 +24,7 @@ def _graph_get(path: str, params: dict[str, Any] | None = None) -> dict:
     )
     if resp.status_code == 401:
         raise RuntimeError(
-            "Outlook rejected the access token (401). Try re-running `uv run outlook-mcp-auth`."
+            "Outlook rejected the access token (401). Try re-running `uv run outlook-personal-mcp-auth`."
         )
     if resp.status_code >= 400:
         raise RuntimeError(f"Graph API error ({resp.status_code}): {resp.text}")

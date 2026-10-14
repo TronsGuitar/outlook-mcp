@@ -1,4 +1,4 @@
-# outlook-mcp
+# outlook-personal-mcp
 
 A small, self-hosted **MCP server** that gives an LLM (Claude Code, Claude Desktop, or any
 MCP client) **read-only** access to a **personal Outlook.com** mailbox (outlook.com /
@@ -12,7 +12,7 @@ registered as work/school-only apps and will reject a personal account — this 
 specifically for personal mailboxes.
 
 > **Your data stays local.** The server runs on your machine and caches your OAuth token in
-> `~/.outlook-mcp/token.json` (file permissions `600`). Nothing is sent anywhere except
+> `~/.outlook-personal-mcp/token.json` (file permissions `600`). Nothing is sent anywhere except
 > directly to Microsoft Graph.
 
 ## Tools
@@ -65,13 +65,13 @@ pip install .
 ```sh
 # PowerShell
 $env:OUTLOOK_MCP_CLIENT_ID = "<your-application-client-id>"
-uv run outlook-mcp-auth
+uv run outlook-personal-mcp-auth
 ```
 
 ```sh
 # bash / zsh
 export OUTLOOK_MCP_CLIENT_ID="<your-application-client-id>"
-uv run outlook-mcp-auth
+uv run outlook-personal-mcp-auth
 ```
 
 A browser opens; sign in and approve. Your refresh token is cached and auto-renews after that.
@@ -83,7 +83,7 @@ A browser opens; sign in and approve. Your refresh token is cached and auto-rene
 ```sh
 claude mcp add --scope user outlook \
   --env OUTLOOK_MCP_CLIENT_ID=<client-id> \
-  -- uv --directory /path/to/outlook-mcp run outlook-mcp
+  -- uv --directory /path/to/outlook-personal-mcp run outlook-personal-mcp
 ```
 
 **Claude Desktop / other clients** — add to the MCP config file:
@@ -93,7 +93,7 @@ claude mcp add --scope user outlook \
   "mcpServers": {
     "outlook": {
       "command": "uv",
-      "args": ["--directory", "/path/to/outlook-mcp", "run", "outlook-mcp"],
+      "args": ["--directory", "/path/to/outlook-personal-mcp", "run", "outlook-personal-mcp"],
       "env": { "OUTLOOK_MCP_CLIENT_ID": "<client-id>" }
     }
   }
@@ -128,13 +128,13 @@ Then open the resulting `.mcpb` file with Claude Desktop.
 If the cached token is revoked or expires beyond refresh, just run the sign-in again:
 
 ```sh
-uv run outlook-mcp-auth
+uv run outlook-personal-mcp-auth
 ```
 
 ## Security notes
 
 - Read-only (`Mail.Read`) — the server cannot send, move, or delete mail.
-- Tokens never leave your machine; `~/.outlook-mcp/token.json` is excluded from git.
+- Tokens never leave your machine; `~/.outlook-personal-mcp/token.json` is excluded from git.
 - Each user uses their own Azure app registration, so there is no shared client secret.
 
 ## License
